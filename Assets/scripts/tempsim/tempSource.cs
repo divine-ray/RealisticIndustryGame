@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tempGenerator : MonoBehaviour
+public class tempSource : MonoBehaviour
 {
 public double currentLocalHeat;
 public double heatTransferRate;
 //public int globalTemperature = 20;
 public double heatDissipation = 0;
 public double currentTemporaryHeat;
-    public double ambientHeat;
-    
+public double ambientHeat;
+    public double targetTemp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public double currentTemporaryHeat;
     void FixedUpdate()
     {
         currentTemporaryHeat = currentLocalHeat - heatDissipation;
-        currentLocalHeat = 100;
+        currentLocalHeat = targetTemp;;
         
     }
     public void CalculateTempConduction(bool ThermalConductorInProx)

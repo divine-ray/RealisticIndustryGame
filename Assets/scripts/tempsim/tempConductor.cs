@@ -9,6 +9,7 @@ public class tempConductor : MonoBehaviour
     public double heatDissipation = 0;
     public int globalTemperature = 20;
     public double currentTemporaryHeat = 0;
+    public double ambientHeat = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +32,12 @@ public class tempConductor : MonoBehaviour
             {
 
 
+                currentTemporaryHeat = currentLocalHeat + heatDissipation;
+                currentLocalHeat = currentTemporaryHeat + heatDissipation;
+                
 
-                currentLocalHeat = currentLocalHeat + heatDissipation;
+                }
+            ambientHeat = currentTemporaryHeat;
             }
-            }
+        }
     }
-}

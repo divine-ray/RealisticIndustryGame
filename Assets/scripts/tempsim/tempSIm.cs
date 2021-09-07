@@ -10,6 +10,7 @@ public class tempSim : MonoBehaviour
     public double heatDissipation = 0;
     public int globalTemperature = 20;
     public double currentTemporaryHeat = 0;
+    public double ambientHeat = 0;
 
     //public float
 

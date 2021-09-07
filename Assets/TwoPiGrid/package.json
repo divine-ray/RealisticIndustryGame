@@ -1,0 +1,23 @@
+{
+  "name": "com.emmaprats.twopigrid",
+  "version": "1.1.1",
+  "displayName": "2π Grid (Two Pi Grid)",
+  "description": "A customizable spherical grid system!\n\nTwo Pi Grid is a small tool to help you create spherical 3D grids for your game. The grid is logical, it does not have a physical representation in-game.\n\nYou can generate a custom grid and define its cells' characteristics with your own types.",
+  "unity": "2019.1",
+  "keywords": [
+    "grid",
+    "sphere",
+    "spherical grid",
+    "planet grid",
+    "planet",
+    "icosahedron",
+    "grid generator",
+    "icosahedron generator",
+    "hexagonal grid"
+  ],
+  "author": {
+    "name": "Emma Prats",
+    "email": "twopigrid@gmail.com",
+    "url": "https://www.emmaprats.com"
+  }
+}

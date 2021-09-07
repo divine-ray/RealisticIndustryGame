@@ -1,43 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class tempConductor : MonoBehaviour
 {
-    public double currentLocalHeat = 20;
-    public double heatTransferRate = 0;
-    public double heatDissipation = 0;
-    public int globalTemperature = 20;
-    public double currentTemporaryHeat = 0;
-    public double ambientHeat = 0;
+    public double currentLocalHeat;
+    public double heatTransferRate;
+    public double heatDissipation;
+    public int globalTemperature;
+    public double currentTemporaryHeat;
+    public double ambientHeat;
 
     // Start is called before the first frame update
     void Start()
     {
         heatTransferRate = 1;
         heatDissipation = 0.1;
+        globalTemperature = 20;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if( currentLocalHeat > globalTemperature)
-            {
+        if (currentLocalHeat > globalTemperature)
+        {
             currentTemporaryHeat = currentLocalHeat - heatDissipation;
             currentLocalHeat = currentTemporaryHeat;
 
         }
-        else {
+        else
+        {
             if (currentLocalHeat < globalTemperature)
             {
 
 
                 currentTemporaryHeat = currentLocalHeat + heatDissipation;
                 currentLocalHeat = currentTemporaryHeat + heatDissipation;
-                
 
-                }
-            ambientHeat = currentTemporaryHeat;
+
             }
+            ambientHeat = currentTemporaryHeat;
         }
+
     }
+    public void OnCollisionStay(Collision collision)
+    {
+        gameObject.SendMessage("collided", true);
+
+    }
+    public void collided(bool ThermalConductorInProx)
+    {
+        currentTemporaryHeat = ambientHeat + currentLocalHeat;
+        //gameObject.SendMessage("AmbientHeat", ambientHeat);
+
+
+        Debug.Log($"{this} object has ambheat: {ambientHeat}");
+        Debug.Log($"{this} object has localheat: {currentLocalHeat}");
+    }
+
+
+}

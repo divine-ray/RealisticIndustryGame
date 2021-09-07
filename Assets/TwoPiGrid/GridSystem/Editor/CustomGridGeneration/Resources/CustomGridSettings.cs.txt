@@ -1,0 +1,16 @@
+using TwoPiGrid;
+using UnityEngine;
+
+namespace __BASE_NAMESPACE__.Settings
+{
+    public class __GRID_NAME__Settings : GridSettings, I__GRID_NAME__Settings
+    {
+__PUBLIC_PROPERTIES__
+        public __GRID_NAME__Settings(__CONSTRUCTOR_SIGNATURE_CUSTOM_PARAMS__
+            GridCellsAmount cellsAmount,
+            float radius = 1,
+            Vector3 center = default) : base(cellsAmount, radius, center)
+        {
+__CONSTRUCTOR_BODY__        }
+    }
+}

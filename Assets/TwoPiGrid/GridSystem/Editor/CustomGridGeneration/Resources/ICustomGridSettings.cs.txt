@@ -1,0 +1,8 @@
+using TwoPiGrid;
+
+namespace __BASE_NAMESPACE__.Settings
+{
+    public interface I__GRID_NAME__Settings : IGridSettings
+    {
+__PROPERTIES__    }
+}

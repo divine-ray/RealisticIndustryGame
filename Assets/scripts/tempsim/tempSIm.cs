@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tempSim : MonoBehaviour
+public class TempSim : MonoBehaviour
 {
 
     public double currentLocalHeat = 20;
@@ -25,4 +25,12 @@ public class tempSim : MonoBehaviour
     {
         
     }
+
+    public void OnCollisionStay(Collision collision)
+    {
+        gameObject.SendMessage("ThermalConductorInProx", true);
+
+    }
+
+
 }

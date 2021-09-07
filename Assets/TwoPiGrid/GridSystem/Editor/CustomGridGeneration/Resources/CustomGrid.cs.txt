@@ -1,0 +1,178 @@
+using System;
+using System.IO;
+using System.Linq;
+using TwoPiGrid;
+using TwoPiGrid.Shape;
+using UnityEngine;
+
+namespace __NAMESPACE__
+{
+    /// <summary>
+    /// The __GRID_NAME__ class. A grid contains cells. It has, for each cell,
+    /// its position__CLASS_COMMENT_FIELDS_LIST__.
+    /// </summary>
+    /// <remarks>
+    /// This class can tell you the index of the closest cell to a given position.
+    /// </remarks>
+    public class __GRID_NAME__ : BaseGrid
+    {
+        #region Fields and properties
+__FIELDS_AND_PROPERTIES__
+
+        #endregion
+
+        #region Public constructors
+
+        /// <summary>
+        /// Construct the grid by passing it its settings object file name.
+        /// If the settings can't be found, a default grid will be created
+        /// instead (12 cells, radius of 1, center at (0, 0, 0), default
+        /// values for custom cell properties).
+        /// </summary>
+        /// <param name="settingsFileName">Name of a <c>__GRID_NAME__SettingsSerialized</c>
+        /// asset that should be in a Resources folder.</param>
+        public __GRID_NAME__(string settingsFileName)
+        {
+            I__GRID_NAME__Settings settings = default;
+            try
+            {
+                settings = __GRID_NAME__SettingsSerialized.Load(settingsFileName);
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.LogError(
+                    "Could not find the settings file. Generating a default" +
+                    " grid instead (12 cells, radius of 1, center at (0, 0, 0)," +
+                    " default values for custom cell properties).");
+                settings = new __GRID_NAME__Settings(__DEFAULT_PARAMETERS__GridCellsAmount._12);
+            }
+
+            var meshSettings = GetMeshSettings(settings.CellsAmount, settings.Radius);
+
+            Initialize(meshSettings, settings.Center__INITIALIZE_PARAMS_FROM_SETTINGS__);
+        }
+
+        /// <summary>
+        /// Construct the grid by passing it an <c>I__GRID_NAME__Settings</c> object.
+        /// </summary>
+        /// <param name="settings">Settings object.</param>
+        public __GRID_NAME__(I__GRID_NAME__Settings settings)
+        {
+            var meshSettings = GetMeshSettings(settings.CellsAmount, settings.Radius);
+
+            Initialize(meshSettings, settings.Center__INITIALIZE_PARAMS_FROM_SETTINGS__);
+        }
+
+        #endregion
+
+        #region Public factory constructors
+
+        /// <summary>
+        /// Creates a grid with 12 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 12 cells</returns>
+        public static __GRID_NAME__ CreateWith12Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor12Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 20 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 20 cells</returns>
+        public static __GRID_NAME__ CreateWith20Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor20Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 32 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 32 cells</returns>
+        public static __GRID_NAME__ CreateWith32Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor32Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 42 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 42 cells</returns>
+        public static __GRID_NAME__ CreateWith42Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor42Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 80 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 80 cells</returns>
+        public static __GRID_NAME__ CreateWith80Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor80Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 162 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 162 cells</returns>
+        public static __GRID_NAME__ CreateWith162Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor162Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 320 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 320 cells</returns>
+        public static __GRID_NAME__ CreateWith320Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor320Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 642 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 642 cells</returns>
+        public static __GRID_NAME__ CreateWith642Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor642Cells(radius), center__INITIALIZE_PARAMS__);
+
+        /// <summary>
+        /// Creates a grid with 1280 cells.
+        /// </summary>
+        /// <param name="radius">The grid's radius. Can be changed dynamically.</param>
+        /// <param name="center">The position of the grid's center (in world coordinates).
+        /// Can be changed dynamically.</param>
+        /// <returns>A grid with 1280 cells</returns>
+        public static __GRID_NAME__ CreateWith1280Cells(__FACTORY_CONSTRUCTOR_PARAMS_SIGNATURE__float radius = 1, Vector3 center = default)
+            => new __GRID_NAME__(SettingsFor1280Cells(radius), center__INITIALIZE_PARAMS__);
+
+        #endregion
+
+        #region Protected constructors and initializers
+
+        protected __GRID_NAME__(GridShapeSettings settings, Vector3 center__CONSTRUCTOR_INITIALIZE_PARAMS_SIGNATURE__)
+        {
+            Initialize(settings, center__INITIALIZE_PARAMS__);
+        }
+
+        protected void Initialize(GridShapeSettings settings, Vector3 center__CONSTRUCTOR_INITIALIZE_PARAMS_SIGNATURE__)
+        {
+            base.Initialize(settings, center);
+
+__ENSURE_INITIALIZE_PARAMS__
+        }
+        
+        #endregion
+    }
+}

@@ -1,0 +1,75 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using TwoPiGrid;
+using UnityEngine;
+
+namespace __BASE_NAMESPACE__.Settings
+{
+    [CreateAssetMenu(fileName = "__GRID_NAME__Settings", menuName = "Two Pi Grid/__GRID_NAME__ Settings", order = 1)]
+    public class __GRID_NAME__SettingsSerialized : GridSettingsSerialized, I__GRID_NAME__Settings
+    {
+__SERIALIZED_FIELDS_AND_PROPERTIES__
+
+        [Tooltip("Deactivating this will prevent you from losing serialized data on extra cells" +
+                 " if you decide to reduce the amount of them.")]
+        [SerializeField] private bool deleteExtraCellsWhenReducingCellsAmount = true;
+
+        //For the custom inspector:
+        [SerializeField, HideInInspector] internal bool advancedSettingsFoldout;
+
+        /// <summary>
+        /// Tries to load a [__GRID_NAME__SettingsSerialized] object from a Resources folder.
+        /// Throws [FileNotFoundException] if asset not found.
+        /// </summary>
+        /// <param name="fileName">The name of the asset.</param>
+        /// <returns></returns>
+        /// <exception cref="FileNotFoundException">If asset not found.</exception>
+        internal static __GRID_NAME__SettingsSerialized Load(string fileName)
+        {
+            var resources = Resources.FindObjectsOfTypeAll<__GRID_NAME__SettingsSerialized>();
+
+            var settings = resources.FirstOrDefault(resource => resource.name == fileName);
+
+            if (settings == null)
+            {
+                resources = Resources.LoadAll<__GRID_NAME__SettingsSerialized>("__GRID_NAME__Settings");
+
+                settings = resources.FirstOrDefault(resource => resource.name == fileName);
+            }
+
+            if (settings == null)
+                settings = Resources.Load<__GRID_NAME__SettingsSerialized>(fileName);
+
+            if (settings == null)
+                throw new FileNotFoundException($"Could not find the settings asset named \"{fileName}\".", fileName);
+
+            return settings;
+        }
+
+        private void Reset()
+        {
+            EnsureArrayLengths();
+        }
+
+        protected override void OnValidate()
+        {
+            EnsureArrayLengths();
+            if (deleteExtraCellsWhenReducingCellsAmount)
+                ReduceArraysToCellCount();
+            base.OnValidate();
+        }
+
+        private void EnsureArrayLengths()
+        {
+            var cellCount = (int) CellsAmount;
+__ENSURE_ARRAY_LENGTHS__
+        }
+
+        public void ReduceArraysToCellCount()
+        {
+            var cellCount = (int) CellsAmount;
+__REDUCE_ARRAYS_TO_CELL_COUNT__
+        }
+    }
+}

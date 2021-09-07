@@ -9,6 +9,7 @@ public class tempSink : MonoBehaviour
     public double heatDissipation = 0;
     public int globalTemperature = 20;
     public double currentTemporaryHeat = 0;
+    public double ambientHeat { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,19 @@ public class tempSink : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        currentLocalHeat = -200;
+        currentTemporaryHeat = currentLocalHeat - heatDissipation;
+        currentLocalHeat = -100;
+
+    }
+    public void CalculateTempConduction(bool ThermalConductorInProx)
+    {
+        currentTemporaryHeat = ambientHeat + currentLocalHeat;
+        ambientHeat = currentTemporaryHeat;
+        gameObject.SendMessage("AmbientHeat", ambientHeat);
+
+
+
     }
 }

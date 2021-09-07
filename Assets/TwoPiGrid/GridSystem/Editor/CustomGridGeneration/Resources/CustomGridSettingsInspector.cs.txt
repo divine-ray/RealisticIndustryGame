@@ -1,0 +1,224 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using __BASE_NAMESPACE__.Settings;
+using UnityEditor;
+using UnityEditorInternal;
+using UnityEngine;
+
+namespace __BASE_NAMESPACE__.Editor
+{
+    [CustomEditor(typeof(__GRID_NAME__SettingsSerialized))]
+    public class __GRID_NAME__SettingsInspector : UnityEditor.Editor
+    {
+        private __GRID_NAME__SettingsSerialized settings;
+
+        private const float LEFT_PADDING = 14f;
+        private const float RIGHT_PADDING = 4f;
+        private const float HORIZONTAL_DISTANCE = 10f;
+        private const float VERTICAL_PADDING = 4f;
+        private const float VERTICAL_DISTANCE = 2f;
+
+        private ReorderableList reorderableList;
+
+__INFO_FOR_THE_LIST__
+
+        private Color alternateColor = new Color32(194, 194, 194, 255);
+        private Color alternateColorProSkin = new Color32(56, 56, 56, 255);
+
+        private void OnEnable()
+        {
+            settings = (__GRID_NAME__SettingsSerialized) target;
+            LoadChildNames();
+            InitializeList();
+        }
+
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+
+            GUI.enabled = false;
+            {
+                var scriptProperty = serializedObject.FindProperty("m_Script");
+                EditorGUILayout.PropertyField(scriptProperty, true);
+            }
+            GUI.enabled = true;
+
+            EditorGUILayout.Space();
+
+            var property = serializedObject.FindProperty("cellsAmount");
+            EditorGUILayout.PropertyField(property);
+
+            property = serializedObject.FindProperty("radius");
+            EditorGUILayout.PropertyField(property);
+
+            property = serializedObject.FindProperty("center");
+            EditorGUILayout.PropertyField(property);
+
+            EditorGUILayout.Space();
+
+            property = serializedObject.FindProperty("deleteExtraCellsWhenReducingCellsAmount");
+            EditorGUILayout.PropertyField(property);
+
+            EditorGUILayout.Space();
+
+            EditorGUILayout.LabelField("Custom Cell Properties:", EditorStyles.boldLabel);
+            reorderableList.DoLayoutList();
+
+            serializedObject.ApplyModifiedProperties();
+
+            //EditorGUILayout.Separator();
+            //
+            //var actualArraysSizes = serializedObject.FindProperty(propertyNames[0]).arraySize;
+            //var hiddenElementsCount = actualArraysSizes - (int) settings.CellsAmount;
+            //if (hiddenElementsCount > 0)
+            //{
+            //    ref bool foldout = ref settings.advancedSettingsFoldout;
+            //    foldout = EditorGUILayout.Foldout(foldout, "Advanced");
+            //    if (foldout)
+            //    {
+            //        EditorGUI.indentLevel++;
+            //
+            //        EditorGUILayout.LabelField("Actual arrays sizes: " + actualArraysSizes + " elements.");
+            //        EditorGUILayout.LabelField("(Hidden elements: " + hiddenElementsCount + " elements)");
+            //
+            //        if (GUILayout.Button("Delete hidden elements"))
+            //            ((__GRID_NAME__SettingsSerialized) target).ReduceArraysToCellCount();
+            //
+            //        EditorGUI.indentLevel--;
+            //    }
+            //}
+        }
+
+        private void InitializeList()
+        {
+            var property = serializedObject.FindProperty(propertyNames[0]);
+            reorderableList = new ReorderableList(
+                serializedObject: serializedObject,
+                elements: property,
+                draggable: false,
+                displayHeader: true,
+                displayAddButton: false,
+                displayRemoveButton: false)
+            {
+                drawElementCallback = DrawElement,
+                drawHeaderCallback = DrawHeader,
+                elementHeightCallback = GetHeightForElement,
+            };
+        }
+
+        private void DrawHeader(Rect rect)
+        {
+            var oneUnitWidth = rect.width / unitsCount;
+            var nextPos = rect.position.x + oneUnitWidth;
+            for (var i=0; i<propertyCount; i++)
+            {
+                var width = shouldDrawLabel[i] ? 2 * oneUnitWidth : oneUnitWidth;
+                EditorGUI.LabelField(
+                    new Rect(
+                        new Vector2(nextPos, rect.position.y),
+                        new Vector2(width, rect.height)),
+                    headers[i]);
+                nextPos += width;
+            }
+        }
+
+        private void LoadChildNames()
+        {
+            propertyChildNames = new string[propertyCount][];
+
+            // This implementation may look hardcoded, but remember that
+            // this is being automatically generated with an algorithm <3__LOAD_CHILD_NAMES__
+        }
+
+        private void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
+        {
+            if (!isActive && index % 2 == 0)
+                EditorGUI.DrawRect(rect, EditorGUIUtility.isProSkin ? alternateColorProSkin : alternateColor);
+
+            var propertyChildren = new List<SerializedProperty[]>();
+
+            for (var i=0; i<propertyCount; i++)
+            {
+                var property = serializedObject.FindProperty(propertyNames[i]).GetArrayElementAtIndex(index);
+                var childPropertyCount = propertyChildNames[i].Length;
+                if (childPropertyCount > 0)
+                {
+                    var list = new SerializedProperty[childPropertyCount];
+                    for (var j = 0; j < childPropertyCount; j++)
+                        list[j] = property.FindPropertyRelative(propertyChildNames[i][j]);
+                    propertyChildren.Add(list);
+                }
+                else
+                {
+                    propertyChildren.Add(
+                        new[]
+                            //I have to call this twice because otherwise we start painting at index 1 for some reason:
+                            {serializedObject.FindProperty(propertyNames[i]).GetArrayElementAtIndex(index)});
+                }
+            }
+
+            var oneUnitWidth = (rect.size.x - LEFT_PADDING - RIGHT_PADDING - HORIZONTAL_DISTANCE * (columnCount - 1)) / unitsCount;
+
+            var previousLabelWidth = EditorGUIUtility.labelWidth;
+            var previousLabelWrap = EditorStyles.label.wordWrap;
+            EditorStyles.label.wordWrap = false;
+            EditorGUIUtility.labelWidth = 70.0f;
+            {
+                var nextPosX = rect.position.x + LEFT_PADDING;
+                var nextPosY = rect.position.y + VERTICAL_PADDING;
+
+                var propertyWidth = oneUnitWidth;
+                var propertyHeight = EditorGUIUtility.singleLineHeight;
+
+                EditorGUI.LabelField(
+                    new Rect(
+                        new Vector2(nextPosX, nextPosY),
+                        new Vector2(propertyWidth, propertyHeight)),
+                    "Cell " + index);
+
+                nextPosX += HORIZONTAL_DISTANCE + propertyWidth;
+
+                for (var i=0; i<propertyCount; i++)
+                {
+                    nextPosY = rect.position.y + VERTICAL_PADDING;
+                    propertyWidth = shouldDrawLabel[i] ? 2 * oneUnitWidth : oneUnitWidth;
+                    for (var j = 0; j < propertyChildren[i].Length; j++)
+                    {
+                        propertyHeight = EditorGUI.GetPropertyHeight(propertyChildren[i][j]);
+                        EditorGUI.PropertyField(
+                            new Rect(
+                                new Vector2(nextPosX, nextPosY),
+                                new Vector2(propertyWidth, propertyHeight)),
+                            propertyChildren[i][j],
+                            shouldDrawLabel[i] ? null : GUIContent.none,
+                            true);
+                        nextPosY += VERTICAL_DISTANCE + propertyHeight;
+                    }
+                    nextPosX += HORIZONTAL_DISTANCE + propertyWidth;
+                }
+            }
+            EditorGUIUtility.labelWidth = previousLabelWidth;
+            EditorStyles.label.wordWrap = previousLabelWrap;
+        }
+
+        private float GetHeightForElement(int index)
+        {
+            var counts = new List<int>();
+
+            for (var i=0; i<propertyNames.Length; i++)
+            {
+                var property = serializedObject.FindProperty(propertyNames[i]).GetArrayElementAtIndex(index);
+                property.isExpanded = true;
+                counts.Add(property.CountInProperty());
+            }
+
+            var childCount = counts.Max() - 1;
+
+            return
+                2 * VERTICAL_PADDING +
+                EditorGUIUtility.singleLineHeight * childCount + 
+                VERTICAL_DISTANCE * (childCount - 1);
+        }
+    }
+}

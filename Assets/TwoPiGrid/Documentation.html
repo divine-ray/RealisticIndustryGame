@@ -1,0 +1,246 @@
+<html>
+<head>
+    <style>
+        body
+        {
+            font-family: "Helvetica", "Arial";
+            background-color: lightgray;
+            margin: 0;
+        }
+
+        .centered
+        {
+            max-width: 800px;
+            margin: 100px auto;
+        }
+
+        code, pre
+        {
+            font-family: "Menlo", "Lucida Sans Typewriter", "Courier New";
+            font-weight: bold;
+        }
+
+        a
+        {
+            text-decoration: none;
+        }
+
+        h1
+        {
+            text-align: center;
+            font-size: 3em;
+        }
+
+        h2
+        {
+            font-size: 2em;
+            padding: 2em 0 0 0;
+        }
+
+        h3
+        {
+            font-size: 1.25em;
+            padding: 2em 0 0 0;
+        }
+
+        h4
+        {
+            font-size: 1.125em;
+            padding: 1em 0 0 0;
+            margin: 0;
+        }
+
+        p, ul, li
+        {
+            margin: 0;
+            padding: 0.25em;
+        }
+
+        .entity:nth-child(even)
+        {
+            background-color: rgb(220, 220, 220);
+        }
+    </style>
+</head>
+<body>
+<div class="centered">
+    <h1>2π Grid (Two Pi Grid) Docs</h1>
+    <h2>Table of contents</h2>
+    <ul>
+        <li><a href="#BaseGrid"><code>BaseGrid</code></a></li>
+        <li><a href="#GridCellsAmount"><code>GridCellsAmount</code></a></li>
+        <li><a href="#GridSettings"><code>GridSettings</code></a></li>
+        <li><a href="#IGridSettings"><code>IGridSettings</code></a></li>
+    </ul>
+</div>
+<div class="entity"><div class="centered">
+    <h2 id="BaseGrid"><code>BaseGrid</code></h2>
+
+    <p><code>public class <a href="#BaseGrid">BaseGrid</a></code></p>
+
+    <h3>Fields and properties</h3>
+
+    <h4><code>public int CellCount</code></h4>
+    <p>The amount of cells the grid has.</p>
+    <h4><code>public <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> Center</code></h4>
+    <p>The grid's center in world coordinates. Can be changed dynamically.</p>
+
+    <h4><code>public float Radius</code></h4>
+    <p>The grid's radius. Can be changed dynamically.</p>
+
+    <h3>Constructors</h3>
+
+    <h4><code>public <a href="#BaseGrid">BaseGrid</a>(string settingsFileName)</code></h4>
+    <p>Construct the grid by passing it its settings object file name. If the settings can't be found, a default grid will be created instead (12 cells, radius of 1, center at (0, 0, 0)).</p>
+    <ul>
+        <li><code>string settingsFileName</code><br/>Name of a <code>GridSettingsSerialized</code> asset that should be in a Resources folder.</li>
+    </ul>
+
+    <h4><code>public <a href="#BaseGrid">BaseGrid</a>(<a href="#IGridSettings">IGridSettings</a> settings)</code></h4>
+    <p>Construct the grid by passing it an <code>IGridSettings</code> object.</p>
+    <ul>
+        <li><code><a href="#IGridSettings">IGridSettings</a> settings</code><br/>Settings object.</li>
+    </ul>
+
+    <h3>Factory constructors</h3>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith12Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 12 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith20Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 20 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith32Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 32 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith42Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 42 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith80Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 80 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith162Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 162 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith320Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 320 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith642Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 642 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h4><code>public static <a href="#BaseGrid">BaseGrid</a> CreateWith1280Cells(float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Creates a grid with 1280 cells.</p>
+    <ul>
+        <li><code>float radius = 1</code><br/>The grid's radius. Can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The position of the grid's center (in world coordinates). Can be changed dynamically.</li>
+    </ul>
+
+    <h3>Methods</h3>
+
+    <h4><code>public <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> GetCellPosition(int i)</code></h4>
+    <p>Query the position of a cell (in world coordinates).</p>
+    <ul>
+        <li><code>int i</code><br/>Index of the cell.</li>
+    </ul>
+    <p>Returns: The position of the center of the cell.</p>
+
+    <h4><code>public int GetIndexOfClosestVertexTo(<a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> point)</code></h4>
+    <p>Gets the index of the grid's cell that is closest to the given position in world coordinates.</p>
+    <ul>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> point</code><br/>Position in world coordinates to query.</li>
+    </ul>
+    <p>Returns: The index of the closest cell to the point.</p>
+</div></div>
+<div class="entity"><div class="centered">
+    <h2 id="GridCellsAmount"><code>GridCellsAmount</code></h2>
+
+    <p><pre>public enum <a href="#GridCellsAmount">GridCellsAmount</a>
+{
+    _12 = 12,
+    _20 = 20,
+    _32 = 32,
+    _42 = 42,
+    _80 = 80,
+    _162 = 162,
+    _320 = 320,
+    _642 = 642,
+    _1280 = 1280
+}</pre></p>
+</div></div>
+<div class="entity"><div class="centered">
+    <h2 id="GridSettings"><code>GridSettings</code></h2>
+
+    <p><code>public class <a href="#GridSettings">GridSettings</a> : <a href="#IGridSettings">IGridSettings</a></code></p>
+
+    <h3>Properties</h3>
+
+    <h4><code>public <a href="#GridCellsAmount">GridCellsAmount</a> CellsAmount { get; }</code></h4>
+    <p>The amount of cells the grid will have.</p>
+
+    <h4><code>public float Radius { get; }</code></h4>
+    <p>The grid's radius. It can be changed dynamically.</p>
+
+    <h4><code>public <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> Center { get; }</code></h4>
+    <p>The position of the grid's center in world coordinates. It can be changed dynamically.</p>
+
+    <h3>Constructors</h3>
+
+    <h4><code>public <a href="#GridSettings">GridSettings</a>(<a href="#GridCellsAmount">GridCellsAmount</a> cellsAmount, float radius = 1, <a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default)</code></h4>
+    <p>Default constructor.</p>
+    <ul>
+        <li><code><a href="#GridCellsAmount">GridCellsAmount</a> cellsAmount</code><br/>The amount of cells the grid will have.</li>
+        <li><code>float radius = 1</code><br/>The cell's radius. It can be changed dynamically.</li>
+        <li><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> center = default</code><br/>The cell's center in world coordinates. It can be changed dynamically.</li>
+    </ul>
+</div></div>
+<div class="entity"><div class="centered">
+    <h2 id="IGridSettings"><code>IGridSettings</code></h2>
+
+    <p><code>public interface <a href="#IGridSettings">IGridSettings</a></code></p>
+
+    <h3>Properties</h3>
+
+    <h4><code><a href="#GridCellsAmount">GridCellsAmount</a> CellsAmount { get; }</code></h4>
+    <p>The amount of cells the grid will have.</p>
+
+    <h4><code>float Radius { get; }</code></h4>
+    <p>The grid's radius.</p>
+
+    <h4><code><a href="https://docs.unity3d.com/ScriptReference/Vector3.html" target="_blank">Vector3</a> Center { get; }</code></h4>
+    <p>The position of the grid's center in world coordinates.</p>
+
+</div></div>
+</body>
+</html>

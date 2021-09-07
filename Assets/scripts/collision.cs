@@ -39,17 +39,17 @@ public class collision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         rb.AddForce(forceVector, ForceMode.Impulse);
-        test();
+        Test();
         collisionCount++;
-        if (collisionCount >= 5)
-        {
+        //if (collisionCount >= 5)
+        //{
             //Vector3 = new Vector3(0, 0, 0); 
-            transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-        }
+        //    transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        //}
 
         
     }
-    bool test()
+    bool Test()
     {
         hasCollided = true;
         Debug.Log($"{this} object collided: {hasCollided}");

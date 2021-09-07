@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class tempSink : MonoBehaviour
 {
-    public float currentLocalHeat 20;
-    public float heatTransferRate 0;
-    public float heatDissipation 0;
+    public double currentLocalHeat = 20;
+    public double heatTransferRate = 0;
+    public double heatDissipation = 0;
+    public int globalTemperature = 20;
+    public double currentTemporaryHeat = 0;
 
     // Start is called before the first frame update
     void Start()

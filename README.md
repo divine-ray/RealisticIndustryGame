@@ -9,5 +9,5 @@ here we are, RIG!
 
 tl;dr its a physics sim * factory building + Gregtech Complexity 
 
-have fun yall, commits of any kind are always welcome, DM me on discord: CreepTV#9128, invite to the server is https:discord.gg/NTYMgvZeM7
+have fun yall, commits of any kind are always welcome, DM me on discord: CreepTV#9128, invite to the server is https://discord.gg/NTYMgvZeM7
 

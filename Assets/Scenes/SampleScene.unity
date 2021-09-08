@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 617586911}
   - component: {fileID: 617586912}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,6 +498,8 @@ MonoBehaviour:
   globalTemperature: 20
   currentTemporaryHeat: 0
   ambientHeat: 0
+  dissipatedHeat: 0
+  temporaryCalc: 0
 --- !u!54 &1078574212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -585,7 +587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078574209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.26, y: 1.86, z: -10.97}
+  m_LocalPosition: {x: 7.26, y: 6.9, z: -10.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -607,7 +609,7 @@ GameObject:
   - component: {fileID: 1656344185}
   - component: {fileID: 1656344186}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: conductor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,7 +702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656344179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9, y: 1.86, z: -10.97}
+  m_LocalPosition: {x: 4.9, y: 3.54, z: -10.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -719,11 +721,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLocalHeat: 1
-  heatTransferRate: 1
+  heatTransferRate: 0
   heatDissipation: 0.1
   globalTemperature: 20
   currentTemporaryHeat: 2
   ambientHeat: 1
+  dissipatedHeat: 0
+  temporaryCalc: 0
 --- !u!135 &1656344186
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -753,7 +757,7 @@ GameObject:
   - component: {fileID: 1786931795}
   - component: {fileID: 1786931794}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: conductor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,6 +794,8 @@ MonoBehaviour:
   globalTemperature: 20
   currentTemporaryHeat: 0
   ambientHeat: 0
+  dissipatedHeat: 0
+  temporaryCalc: 0
 --- !u!54 &1786931796
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -877,7 +883,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786931793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.98, y: 1.86, z: -10.97}
+  m_LocalPosition: {x: 5.98, y: 5.324, z: -11.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -897,7 +903,7 @@ GameObject:
   - component: {fileID: 2019353418}
   - component: {fileID: 2019353417}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

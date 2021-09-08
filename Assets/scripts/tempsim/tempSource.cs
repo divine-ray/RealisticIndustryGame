@@ -22,17 +22,14 @@ public double ambientHeat;
     // Update is called once per frame
     void FixedUpdate()
     {
-        currentTemporaryHeat = currentLocalHeat - heatDissipation;
-        currentLocalHeat = targetTemp;;
         
+        ambientHeat = targetTemp;
+        //gameObject.SendMessage("SendHeat", ambientHeat);
     }
-    public void CalculateTempConduction(bool ThermalConductorInProx)
-    {
-        currentTemporaryHeat = ambientHeat + currentLocalHeat;
-        ambientHeat = currentTemporaryHeat;
-        gameObject.SendMessage("AmbientHeat", ambientHeat);
+    //public void CalculateTempConduction(bool ThermalConductorInProx) {}
+        
 
 
  
-    }
+    
 }

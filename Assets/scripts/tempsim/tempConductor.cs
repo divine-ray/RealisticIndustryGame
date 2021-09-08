@@ -52,8 +52,8 @@ public class tempConductor : MonoBehaviour
         //gameObject.SendMessage("AmbientHeat", ambientHeat);
 
 
-        Debug.Log($"{this} object has ambheat: {ambientHeat}");
-        Debug.Log($"{this} object has localheat: {currentLocalHeat}");
+        //Debug.Log($"{this} object has ambheat: {ambientHeat}");
+        //Debug.Log($"{this} object has localheat: {currentLocalHeat}");
     }
 
 

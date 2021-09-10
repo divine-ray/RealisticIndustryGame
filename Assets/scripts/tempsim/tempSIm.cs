@@ -1,36 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class TempSim : MonoBehaviour
+public class TempSim
 {
 
-    public double currentLocalHeat = 20;
-    public double heatTransferRate = 0;
-    public double heatDissipation = 0;
-    public int globalTemperature = 20;
-    public double currentTemporaryHeat = 0;
-    public double ambientHeat = 0;
+    private double heat_added;
+    private double specific_heat;
+    private double mass;
+    private double delta_T;
+    private double tFinal;
+    private double tInitial;
+    public int time;
+    public double thermalConductivity;
+    private double Thot;
+    private double Tcold;
 
-    //public float
-
-    // Start is called before the first frame update
-    void Start()
+    private void SpecificHeat()
     {
-        
+        delta_T = tFinal - tInitial;
+        heat_added = specific_heat * mass * delta_T;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void heatTransfer()
     {
-        
+        delta_T = Thot - Tcold;
+        heat_added = thermalConductivity * delta_T / mass;
     }
 
-    public void OnCollisionStay(Collision collision)
-    {
-        gameObject.SendMessage("ThermalConductorInProx", true);
 
-    }
+
+
 
 
 }

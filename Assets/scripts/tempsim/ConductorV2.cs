@@ -19,7 +19,7 @@ public class ConductorV2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        HeatRadiation();
+        tempSim.HeatRadiation();
         tempSim.SpecificHeat();
         tempSim.HeatTransfer();
         ConductorTemperature = tempSim.temperatureOfRadiator;

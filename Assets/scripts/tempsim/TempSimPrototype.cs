@@ -16,24 +16,28 @@ public class TempSimPrototype : MonoBehaviour
     public double thermalConductivity;  //k
     public double Thot;
     public double Tcold;
-
+    public double HeatTransferredInTime; // Q/t
     public double netRadiatedPower; //P
     public double radiatingArea; //A
     public double stefanConstant = 0.0000000567; //funny o
     public double emissivity; //e
-    
+
 
     public void SpecificHeat()
     {
         delta_T = TFinal - TInitial;
         heat_added = specific_heat * mass * delta_T;
+       
     }
+
 
     public void HeatTransfer()
     {
         delta_T = Thot - Tcold;
-        heat_added = thermalConductivity * delta_T / mass;
+        HeatTransferredInTime = thermalConductivity * delta_T / mass;
+        
     }
+
 
     public void HeatRadiation()
     {
@@ -41,6 +45,13 @@ public class TempSimPrototype : MonoBehaviour
         delta_T = Mathf.Pow((float)temperatureOfRadiator, 4) - Mathf.Pow((float)temperatureOfSurroundings, 4);
         netRadiatedPower = emissivity * stefanConstant * radiatingArea * delta_T;
         
+    
     }
 
+    public void FixedUpdate()
+    {
+        SpecificHeat();
+        HeatTransfer();
+        HeatRadiation();
+    }
 }

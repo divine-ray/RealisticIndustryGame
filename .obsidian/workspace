@@ -1,0 +1,95 @@
+{
+  "main": {
+    "id": "01cd1cad0118366f",
+    "type": "split",
+    "children": [
+      {
+        "id": "d048fd890d0df750",
+        "type": "leaf",
+        "state": {
+          "type": "graph",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a2885fab519fe7af",
+    "type": "split",
+    "children": [
+      {
+        "id": "4e84aa91935aa38a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c6802f09460475df",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "5737f197429ceccc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "ConductorV2",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "566d8b5132845ef9",
+    "type": "split",
+    "children": [
+      {
+        "id": "11f239dc8bb30dda",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2d54663c8391253d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "d048fd890d0df750",
+  "lastOpenFiles": [
+    "Assets/3rd party asset/HeyBlairGames/PlanetTextureGenerator/Example/NormalMap.png",
+    "Assets/3rd party asset/HeyBlairGames/PlanetTextureGenerator/Example/IlluminationMap.png",
+    "Assets/3rd party asset/HeyBlairGames/PlanetTextureGenerator/Example/CloudNormalMap.png",
+    "Assets/3rd party asset/HeyBlairGames/PlanetTextureGenerator/Example/CloudMap.png",
+    "Assets/3rd party asset/HeyBlairGames/PlanetTextureGenerator/Documentation.pdf",
+    "README.md"
+  ]
+}

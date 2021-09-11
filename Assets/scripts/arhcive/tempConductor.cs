@@ -10,7 +10,7 @@ public class TempConductor : MonoBehaviour
     public double ambientHeat;
     public double dissipatedHeat;
     public double temporaryCalc;
-    private bool ThermalConductorInProx;
+    //private bool ThermalConductorInProx;
 
 
     // Start is called before the first frame update
@@ -45,7 +45,7 @@ public class TempConductor : MonoBehaviour
 
     public void OnCollisionStay(Collision collision)
     {
-        ThermalConductorInProx = true;
+        //ThermalConductorInProx = true;
         gameObject.BroadcastMessage("SendHeat", ambientHeat);
     }
     void SendHeat(double currentLocalHeat)

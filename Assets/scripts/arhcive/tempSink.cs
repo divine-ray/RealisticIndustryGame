@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tempSink : MonoBehaviour
+public class TempSink : MonoBehaviour
 {
     public double currentLocalHeat = 20;
     public double heatTransferRate = 0;

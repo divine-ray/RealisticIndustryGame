@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class tempConductor : MonoBehaviour
+public class TempConductor : MonoBehaviour
 {
     public double currentLocalHeat;
     public int heatTransferRate;
@@ -55,7 +55,7 @@ public class tempConductor : MonoBehaviour
         gameObject.BroadcastMessage("recieveHeat", ambientHeat);
     }
 
-    void recieveHeat(double currentLocalHeat)
+    void RecieveHeat(double currentLocalHeat)
     {
         currentLocalHeat = ambientHeat + currentLocalHeat;
 

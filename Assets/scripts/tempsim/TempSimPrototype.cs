@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TempSim
+public class TempSimPrototype : MonoBehaviour
 {
     public double temperatureOfRadiator; //T
     public double temperatureOfSurroundings; //Tc
@@ -14,8 +14,8 @@ public class TempSim
 
     public int time;            //t
     public double thermalConductivity;  //k
-    private double Thot;
-    private double Tcold;
+    public double Thot;
+    public double Tcold;
 
     public double netRadiatedPower; //P
     public double radiatingArea; //A

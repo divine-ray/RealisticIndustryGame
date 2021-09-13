@@ -1,6 +1,0 @@
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("__BASE_NAMESPACE__.Editor")]
-[assembly: InternalsVisibleTo("__BASE_NAMESPACE__.Tests")]
-[assembly: InternalsVisibleTo("__BASE_NAMESPACE__.Visualization")]
-[assembly: InternalsVisibleTo("__BASE_NAMESPACE__.Visualization.Editor")]

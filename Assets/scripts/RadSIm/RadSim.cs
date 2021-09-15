@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class elementHandler : MonoBehaviour
+public class RadSim : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,4 +16,3 @@ public class elementHandler : MonoBehaviour
         
     }
 }
-        //yadda yadda i want to give materials properties based on atomic number = element, so this would happen here

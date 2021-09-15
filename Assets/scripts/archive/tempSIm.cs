@@ -5,6 +5,7 @@ using UnityEngine;
 public class TempSim : MonoBehaviour
 {
 
+    /*
     public double currentLocalHeat = 20;
     public double heatTransferRate = 0;
     public double heatDissipation = 0;
@@ -32,5 +33,5 @@ public class TempSim : MonoBehaviour
 
     }
 
-
+    */
 }

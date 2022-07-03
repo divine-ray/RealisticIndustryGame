@@ -20,6 +20,11 @@ public class tempConductor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+     Equalisation();
+    }
+
+    private void Equalisation()
+    {
         if (currentLocalHeat > globalTemperature)
         {
             currentTemporaryHeat = currentLocalHeat - heatDissipation;
@@ -39,8 +44,8 @@ public class tempConductor : MonoBehaviour
             }
             ambientHeat = currentTemporaryHeat;
         }
-
     }
+
     public void OnCollisionStay(Collision collision)
     {
         gameObject.SendMessage("collided", true);
